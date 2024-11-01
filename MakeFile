@@ -1,0 +1,19 @@
+.PHONY: build run test migrate-up migrate-down seed
+
+build:
+	go build -o bin/app main.go
+
+run:
+	go run main.go
+
+test:
+	go test -v ./...
+
+migrate-up:
+	./scripts/migration.sh up
+
+migrate-down:
+	./scripts/migration.sh down
+
+seed:
+	go run database/seeders/seeder.go
